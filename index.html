@@ -69,6 +69,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-241118-aptRelatedWork" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/18/241118-aptRelatedWork/" class="article-date">
+  <time class="dt-published" datetime="2024-11-17T16:00:00.000Z" itemprop="datePublished">2024-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/11/18/241118-aptRelatedWork/">241118-aptRelatedWork</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="光对准相关工作"><a href="#光对准相关工作" class="headerlink" title="光对准相关工作"></a>光对准相关工作</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">However, reliable optical data transmission in harsh marine environments encounters interference from waves and currents, as it requires strict link alignment. The problems of beam misalignment and pointing errors have been addressed by several research efforts. Luo et al <span class="keyword">\cite</span>&#123;mss-node-uav&#125; proposed a beam pointing adjustment algorithm based on a soft actor-critic approach to mitigate the effect of waves on system performance.</span><br><span class="line">Shin et al. <span class="keyword">\cite</span>&#123;shin-ioagent-2023&#125; proposed a two-stage DRL algorithm for controlling data transmission, where beam divergence angle and transmission power are jointly optimized to maintain seamless connectivity between ocean surface vehicles and underwater sensors. Weng et al. <span class="keyword">\cite</span>&#123;Weng2024AUV&#125; proposed a reinforcement learning‐based alignment method to control the AUV to establish an optical link and maintain alignment utilizing multiple sensors in conjunction with particle filters. However, the former are controlling the beam to be vertically upward or horizontally aligned, and do not take into account more flexible pointing relationships.</span><br><span class="line">Shin et al. <span class="keyword">\cite</span>&#123;shin-bobd-2024&#125; proposed a two-step two-agent deep reinforcement learning algorithm that enables an underwater sensor installed on the seabed to sequentially determine the beam orientation (BO) and beam divergence (BD) angles for transmitting its sensing data to an USV that may irregularly shake above the sea level. Although it uses BO and BD to improve the reliability of communication, the two agents are adjusted in two steps still face the problem of dynamic changes in the environment when the actual control is deployed.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%5Cimages%5Cscenario.png%22%E5%9C%BA%E6%99%AF%22" alt="场景"></p>
+<h2 id="插入图片的方法"><a href="#插入图片的方法" class="headerlink" title="插入图片的方法"></a>插入图片的方法</h2><p>在完成了、发布文章后，如果我们想在文章中插入图片，该怎么做呢？<br>在使用网上的方法上传图片之后，我仍然遇到“图片无法显示”的问题，查阅官方文档并自己实践后，终于解决了，现将几种插入图片方法的步骤整理如下。</p>
+<p>方法一：全局资源文件夹<br>即，将所有文章的资源统一用一个全局资源文件夹管理。<br>此方法的优点是比较简便，并且当多篇文章需要引用同一资源时，也比较方便。缺点是当文章很多时，各个文章的图片都在同一文件夹，不便管理。</p>
+<p>具体方法：<br>在hexo文件夹下的source目录下，新建一个文件夹叫images(名字随意)，将要插入的图片放在该文件夹中。<br>md文档内，使用<img src="/%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80" alt="图片" title="图片title">的格式，圆括号内的链接地址写(&#x2F;images&#x2F;name.jpeg)。<br>这里的 &#x2F; 指的是根目录，对于hexo，资源文件的根目录就是source。</p>
+<p>例如，在md文档中写：<img src="/images/20.jpeg" alt="图片" title="甘雨"><br>同时将“20.jpeg”这个图片文件放在hexo文件夹&#x2F;source&#x2F;images下，则图片可以上传到博客。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/11/18/241118-aptRelatedWork/" data-id="cm3muf21f0000lku8gy7l62ac" data-title="241118-aptRelatedWork" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-20241115-firstblog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/11/15/20241115-firstblog/" class="article-date">
@@ -279,6 +324,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/11/18/241118-aptRelatedWork/">241118-aptRelatedWork</a>
+          </li>
         
           <li>
             <a href="/2024/11/15/20241115-firstblog/">20241115 aylmer first blog</a>

@@ -1,388 +1,170 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
   
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/03/21/20250321-drone/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-03-21T02:54:14.866Z" title="Created 2025-03-21 10:54:14">2025-03-21</time></span></div><div class="content">I2C通过通信线，实现单片机读写外挂模块的寄存器的功能。  串行半双工 应答机制 多模块 一主多从 &#x2F; 多主多从 同步、时钟线  采用外置若上拉电阻加开漏输出结构，进制所有设备输出强上拉的高电平。 I2C时序基本单元 起始条件：SCL高，SDA下降沿；终止条件：SCL高，SDA上升沿 主机发送一个字节：SCL低电平期间，主机数据将依次放到SDA上（高位先行，B7–&gt;B0依次发送），然后释放SCL，从机在SCL高电平期间，读取数据位。 主机接收一个字节 ：SCL低电平期间，从机数据依次放到SDA上（高位先行），主机在SCL高电平期间读取数据位。 应答机制 发送应答SA：主机在接收完一个字节后，在下一个时钟发送1bit，0应答，1非应答。 接收应答RA：主机在发送完一个字节后，在下一个时钟接收1bit从判断从机是否应答，0应答，1非应答。 I2C时序★★★  指定地址写：对于指定设备（slave address），在指定地址（reg address）下，写入指定数据（data）  起始  –&gt; 主机send slave address（7bit）+...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/11/18/241118-aptRelatedWork/" title="241118-aptRelatedWork">241118-aptRelatedWork</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-11-17T16:00:00.000Z" title="Created 2024-11-18 00:00:00">2024-11-18</time></span></div><div class="content">光对准相关工作123However, reliable optical data transmission in harsh marine environments encounters interference from waves and currents, as it requires strict link alignment. The problems of beam misalignment and pointing errors have been addressed by several research efforts. Luo et al \cite&#123;mss-node-uav&#125; proposed a beam pointing adjustment algorithm based on a soft actor-critic approach to mitigate the effect of waves on system performance.Shin et al....</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/11/15/20241115-firstblog/" title="20241115 aylmer first blog">20241115 aylmer first blog</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-11-15T08:31:38.000Z" title="Created 2024-11-15 16:31:38">2024-11-15</time></span></div><div class="content">Front-matter 前置数据Front-matter 是一个放在文件前面被 --- 包裹的区块。例如 123title: Hello Worlddate: 2013/7/13 20:46:25---  可以在 front-matter 中配置所有文章的配置项。下面是预定义的设置。 编写 front-matter 使用 YAML 格式。在 front-matter 不能使用制表符而要使用空格进行缩进，在冒号后面有一个空格。    设置 描述 默认值    layout 布局 post&#x2F;page   title 标题    date 发布时间 文件创建日期   updated 最后修改时间 文件的最后时间   comments 对这篇文章开启评论 true   tags 标签 (对于独立页面不可用)    categories 分类 (对于独立页面不可用)    permalink 对于这篇文章覆盖默认的链接规则 文件名   分类和标签Hexo 支持分类和标签。分类和标签只在文章中支持并且必须在 front-matter...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/11/15/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-11-15T08:02:20.217Z" title="Created 2024-11-15 16:02:20">2024-11-15</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/21/20250321-drone/" title="Untitled">Untitled</a><time datetime="2025-03-21T02:54:14.866Z" title="Created 2025-03-21 10:54:14">2025-03-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/18/241118-aptRelatedWork/" title="241118-aptRelatedWork">241118-aptRelatedWork</a><time datetime="2024-11-17T16:00:00.000Z" title="Created 2024-11-18 00:00:00">2024-11-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/15/20241115-firstblog/" title="20241115 aylmer first blog">20241115 aylmer first blog</a><time datetime="2024-11-15T08:31:38.000Z" title="Created 2024-11-15 16:31:38">2024-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/15/hello-world/" title="Hello World">Hello World</a><time datetime="2024-11-15T08:02:20.217Z" title="Created 2024-11-15 16:02:20">2024-11-15</time></div></div></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-241118-aptRelatedWork" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/11/18/241118-aptRelatedWork/" class="article-date">
-  <time class="dt-published" datetime="2024-11-17T16:00:00.000Z" itemprop="datePublished">2024-11-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/11/18/241118-aptRelatedWork/">241118-aptRelatedWork</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+    <ul class="card-archive-list">
       
-        <h2 id="光对准相关工作"><a href="#光对准相关工作" class="headerlink" title="光对准相关工作"></a>光对准相关工作</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">However, reliable optical data transmission in harsh marine environments encounters interference from waves and currents, as it requires strict link alignment. The problems of beam misalignment and pointing errors have been addressed by several research efforts. Luo et al <span class="keyword">\cite</span>&#123;mss-node-uav&#125; proposed a beam pointing adjustment algorithm based on a soft actor-critic approach to mitigate the effect of waves on system performance.</span><br><span class="line">Shin et al. <span class="keyword">\cite</span>&#123;shin-ioagent-2023&#125; proposed a two-stage DRL algorithm for controlling data transmission, where beam divergence angle and transmission power are jointly optimized to maintain seamless connectivity between ocean surface vehicles and underwater sensors. Weng et al. <span class="keyword">\cite</span>&#123;Weng2024AUV&#125; proposed a reinforcement learning‐based alignment method to control the AUV to establish an optical link and maintain alignment utilizing multiple sensors in conjunction with particle filters. However, the former are controlling the beam to be vertically upward or horizontally aligned, and do not take into account more flexible pointing relationships.</span><br><span class="line">Shin et al. <span class="keyword">\cite</span>&#123;shin-bobd-2024&#125; proposed a two-step two-agent deep reinforcement learning algorithm that enables an underwater sensor installed on the seabed to sequentially determine the beam orientation (BO) and beam divergence (BD) angles for transmitting its sensing data to an USV that may irregularly shake above the sea level. Although it uses BO and BD to improve the reliability of communication, the two agents are adjusted in two steps still face the problem of dynamic changes in the environment when the actual control is deployed.</span><br></pre></td></tr></table></figure>
-
-<p><img src="/%5Cimages%5Cscenario.png%22%E5%9C%BA%E6%99%AF%22" alt="场景"></p>
-<h2 id="插入图片的方法"><a href="#插入图片的方法" class="headerlink" title="插入图片的方法"></a>插入图片的方法</h2><p>在完成了、发布文章后，如果我们想在文章中插入图片，该怎么做呢？<br>在使用网上的方法上传图片之后，我仍然遇到“图片无法显示”的问题，查阅官方文档并自己实践后，终于解决了，现将几种插入图片方法的步骤整理如下。</p>
-<p>方法一：全局资源文件夹<br>即，将所有文章的资源统一用一个全局资源文件夹管理。<br>此方法的优点是比较简便，并且当多篇文章需要引用同一资源时，也比较方便。缺点是当文章很多时，各个文章的图片都在同一文件夹，不便管理。</p>
-<p>具体方法：<br>在hexo文件夹下的source目录下，新建一个文件夹叫images(名字随意)，将要插入的图片放在该文件夹中。<br>md文档内，使用<img src="/%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80" alt="图片" title="图片title">的格式，圆括号内的链接地址写(&#x2F;images&#x2F;name.jpeg)。<br>这里的 &#x2F; 指的是根目录，对于hexo，资源文件的根目录就是source。</p>
-<p>例如，在md文档中写：<img src="/images/20.jpeg" alt="图片" title="甘雨"><br>同时将“20.jpeg”这个图片文件放在hexo文件夹&#x2F;source&#x2F;images下，则图片可以上传到博客。</p>
-
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              March 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/11/18/241118-aptRelatedWork/" data-id="cm3muf21f0000lku8gy7l62ac" data-title="241118-aptRelatedWork" class="article-share-link"><span class="fa fa-share">Share</span></a>
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/11/">
+            <span class="card-archive-list-date">
+              November 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
       
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-20241115-firstblog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/11/15/20241115-firstblog/" class="article-date">
-  <time class="dt-published" datetime="2024-11-15T08:31:38.000Z" itemprop="datePublished">2024-11-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/11/15/20241115-firstblog/">20241115 aylmer first blog</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Front-matter-前置数据"><a href="#Front-matter-前置数据" class="headerlink" title="Front-matter 前置数据"></a>Front-matter 前置数据</h2><p>Front-matter 是一个放在文件前面被 <code>---</code> 包裹的区块。例如</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>可以在 front-matter 中配置所有文章的配置项。下面是预定义的设置。</p>
-<p>编写 front-matter 使用 YAML 格式。在 front-matter 不能使用制表符而要使用空格进行缩进，在冒号后面有一个空格。</p>
-<table>
-<thead>
-<tr>
-<th align="left">设置</th>
-<th align="left">描述</th>
-<th align="left">默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>layout</code></td>
-<td align="left">布局</td>
-<td align="left">post&#x2F;page</td>
-</tr>
-<tr>
-<td align="left"><code>title</code></td>
-<td align="left">标题</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>date</code></td>
-<td align="left">发布时间</td>
-<td align="left">文件创建日期</td>
-</tr>
-<tr>
-<td align="left"><code>updated</code></td>
-<td align="left">最后修改时间</td>
-<td align="left">文件的最后时间</td>
-</tr>
-<tr>
-<td align="left"><code>comments</code></td>
-<td align="left">对这篇文章开启评论</td>
-<td align="left">true</td>
-</tr>
-<tr>
-<td align="left"><code>tags</code></td>
-<td align="left">标签 (对于独立页面不可用)</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>categories</code></td>
-<td align="left">分类 (对于独立页面不可用)</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>permalink</code></td>
-<td align="left">对于这篇文章覆盖默认的链接规则</td>
-<td align="left">文件名</td>
-</tr>
-</tbody></table>
-<h2 id="分类和标签"><a href="#分类和标签" class="headerlink" title="分类和标签"></a>分类和标签</h2><p>Hexo 支持分类和标签。分类和标签只在文章中支持并且必须在 front-matter 中设置。例如:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">- Diary</span><br><span class="line">tags:</span><br><span class="line">- PS3</span><br><span class="line">- Games</span><br></pre></td></tr></table></figure>
-
-<p>分类和标签在其他系统中听起来是很相似的，但是他们在 Hexo 中是完全不同的。分类是分层的、有序的，这意味着 <code>Foo, Bar</code> 和 <code>Bar, Foo</code> 是不同的。 而标签是无序的、扁平的。</p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>你可以在你文章中添加 <code>&lt;!-- more --&gt;</code> 来隐藏部分内容。列表页面只会显示第一个 <code>&lt;!-- more --&gt;</code> 和第二个 <code>&lt;!-- more --&gt;</code> 之间的内容。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h2 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h2><p>Hexo 会基于对应的模版创建新的文章。例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new photo &quot;My Gallery&quot;</span><br><span class="line"># =&gt; 文件将会被创建到 source/_posts/my-gallery.md</span><br></pre></td></tr></table></figure>
-
-<p>Hexo 会使用 <code>scaffolds</code> 文件夹下以 <code>photo</code> 命名的模版文件，如果模版不存在，会使用文章的模版。</p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>变量会被两个大括号包裹。例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">layout: &#123;&#123; layout &#125;&#125;</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><table>
-<thead>
-<tr>
-<th align="left">变量</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>layout</code></td>
-<td align="left">布局名称</td>
-</tr>
-<tr>
-<td align="left"><code>title</code></td>
-<td align="left">文章标题</td>
-</tr>
-<tr>
-<td align="left"><code>date</code></td>
-<td align="left">文件创建时间</td>
-</tr>
-</tbody></table>
-<h2 id="资源文件夹"><a href="#资源文件夹" class="headerlink" title="资源文件夹"></a>资源文件夹</h2><p>如果你将所有图片和其他资源放在 <code>source</code> 文件夹。你可以开启 <code>post_asset_folder</code> 设置。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
-
-<p>开启此设置后，当你在新建一篇文章时会创建一个文件夹。你可以将所有这篇文章需要的资源文件放在这个文件夹里。这让在文章中使用图片变得非常简单。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/11/15/20241115-firstblog/" data-id="cm3ihl9lc0000mgu8bta0d1kf" data-title="20241115 aylmer first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/11/15/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2024-11-15T08:02:20.217Z" itemprop="datePublished">2024-11-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/11/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/11/15/hello-world/" data-id="cm3igtff6000014u84x359ev8" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/11/18/241118-aptRelatedWork/">241118-aptRelatedWork</a>
-          </li>
-        
-          <li>
-            <a href="/2024/11/15/20241115-firstblog/">20241115 aylmer first blog</a>
-          </li>
-        
-          <li>
-            <a href="/2024/11/15/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2024 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-03-25T09:02:49.240Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

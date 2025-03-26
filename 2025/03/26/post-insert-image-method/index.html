@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hexo 个人博客中插入图片的方法 | Aylmer's Blog</title><meta name="author" content="Aylmer"><meta name="copyright" content="Aylmer"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言自己做一个博客的想法已经存在好久，大概从大四考完研那段时间开始的。自那以后，给自己初步使用hexo搭建起了一个个人小博客，但是一直也没有经营，主题是原始的hexo没有换，只能显示文字。然后前段时间由于要准备找工作了（研二上半学期，想投春招实习），重新经营博客。顺利更换了主题，但是图片的插入一直有问题，找了很多方法一直都不行。然后终于参考csdn的一篇文章（hexo博客中插入图片失败——解决思路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo 个人博客中插入图片的方法">
+<meta property="og:url" content="https://aylmer-wang.github.io/2025/03/26/post-insert-image-method/index.html">
+<meta property="og:site_name" content="Aylmer&#39;s Blog">
+<meta property="og:description" content="前言自己做一个博客的想法已经存在好久，大概从大四考完研那段时间开始的。自那以后，给自己初步使用hexo搭建起了一个个人小博客，但是一直也没有经营，主题是原始的hexo没有换，只能显示文字。然后前段时间由于要准备找工作了（研二上半学期，想投春招实习），重新经营博客。顺利更换了主题，但是图片的插入一直有问题，找了很多方法一直都不行。然后终于参考csdn的一篇文章（hexo博客中插入图片失败——解决思路">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aylmer-wang.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-03-26T02:37:50.000Z">
+<meta property="article:modified_time" content="2025-03-26T03:42:23.220Z">
+<meta property="article:author" content="Aylmer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aylmer-wang.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "hexo 个人博客中插入图片的方法",
+  "url": "https://aylmer-wang.github.io/2025/03/26/post-insert-image-method/",
+  "image": "https://aylmer-wang.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-03-26T02:37:50.000Z",
+  "dateModified": "2025-03-26T03:42:23.220Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Aylmer",
+      "url": "https://aylmer-wang.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://aylmer-wang.github.io/2025/03/26/post-insert-image-method/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hexo 个人博客中插入图片的方法',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Aylmer's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">hexo 个人博客中插入图片的方法</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">hexo 个人博客中插入图片的方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-26T02:37:50.000Z" title="发表于 2025-03-26 10:37:50">2025-03-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-26T03:42:23.220Z" title="更新于 2025-03-26 11:42:23">2025-03-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自己做一个博客的想法已经存在好久，大概从大四考完研那段时间开始的。自那以后，给自己初步使用hexo搭建起了一个个人小博客，但是一直也没有经营，主题是原始的hexo没有换，只能显示文字。然后前段时间由于要准备找工作了（研二上半学期，想投春招实习），重新经营博客。顺利更换了主题，但是图片的插入一直有问题，找了很多方法一直都不行。然后终于参考csdn的一篇文章（<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_43401436/article/details/107191688">hexo博客中插入图片失败——解决思路及个人最终解决办法_hexo 文章插入图片失败-CSDN博客</a>），能够正常插入图片了。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="1-创建图片资源文件夹"><a href="#1-创建图片资源文件夹" class="headerlink" title="1. 创建图片资源文件夹"></a>1. 创建图片资源文件夹</h3><p>将<code>_config.yml</code> 文件中的<code>post_asset_folder</code> 选项设为 <code>true</code> 。</p>
+<h3 id="2-typroa偏好设置"><a href="#2-typroa偏好设置" class="headerlink" title="2. typroa偏好设置"></a>2. typroa偏好设置</h3><p><img src="/2025/03/26/post-insert-image-method/image-20250326112713643.png" alt="image-20250326112713643"></p>
+<p>将框内依次更改，<strong>复制到指定路径</strong>，**.&#x2F;${filename}**。其中<code>./</code>表示当前文件夹，<code>$&#123;filename&#125;</code>表示当前文件名。</p>
+<p>这么设置的结果就是：想写篇博客，在<code>source\_posts</code>文件夹下新建<code>xxx.md</code>文件，写着写着需要插一张图，从别处复制，然后在typora中直接粘贴，图片资源文件夹自动搞定，并不用关心什么文件夹，只管专注于<code>md</code>文件即可。</p>
+<h3 id="3-插件下载"><a href="#3-插件下载" class="headerlink" title="3. 插件下载"></a>3. 插件下载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<p>win系统 cd 到存储blog目录的盘下，然后cd进blog目录下，执行将上面的指令，安装插件即可。</p>
+<p><img src="/2025/03/26/post-insert-image-method/image-20250326113333562.png" alt="image-20250326113333562"></p>
+<p>这个插件的作用是将md文件中图片的相对路径<code>post-insert-image-method/image-20250326112713643.png</code> 更改为index.html页面文件中的绝对路径<code>/2025/03/26/post-insert-image-method/image-20250326113333562.png</code></p>
+<p><img src="/2025/03/26/post-insert-image-method/image-20250326114120748.png" alt="image-20250326114120748"></p>
+<p><img src="/2025/03/26/post-insert-image-method/image-20250326114015067.png" alt="image-20250326114015067"></p>
+<p><img src="/2025/03/26/post-insert-image-method/image-20250326114048744.png" alt="image-20250326114048744"></p>
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p><img src="/2025/03/26/post-insert-image-method/image-20250326114221882.png" alt="image-20250326114221882"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://aylmer-wang.github.io">Aylmer</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://aylmer-wang.github.io/2025/03/26/post-insert-image-method/">https://aylmer-wang.github.io/2025/03/26/post-insert-image-method/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://aylmer-wang.github.io" target="_blank">Aylmer's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/11/18/241118-aptRelatedWork/" title="241118-aptRelatedWork"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">241118-aptRelatedWork</div></div><div class="info-2"><div class="info-item-1">光对准相关工作1234However, reliable optical data transmission in harsh marine environments encounters interference from waves and currents, as it requires strict link alignment. The problems of beam misalignment and pointing errors have been addressed by several research efforts. Luo et al \cite&#123;mss-node-uav&#125; proposed a beam pointing adjustment algorithm based on a soft actor-critic approach to mitigate the effect of waves on system performance.Shin et al....</div></div></div></a><a class="pagination-related" href="/2025/03/26/20250321-iic/" title="I2C 原理及时序代码"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">I2C 原理及时序代码</div></div><div class="info-2"><div class="info-item-1">I2C通过通信线，实现单片机读写外挂模块的寄存器的功能。  串行半双工 应答机制 多模块 一主多从 &#x2F; 多主多从 同步、时钟线  采用外置若上拉电阻加开漏输出结构，进制所有设备输出强上拉的高电平。 I2C时序基本单元 起始条件：SCL高，SDA下降沿；终止条件：SCL高，SDA上升沿 主机发送一个字节：SCL低电平期间，主机数据将依次放到SDA上（高位先行，B7–&gt;B0依次发送），然后释放SCL，从机在SCL高电平期间，读取数据位。 主机接收一个字节 ：SCL低电平期间，从机数据依次放到SDA上（高位先行），主机在SCL高电平期间读取数据位。 应答机制 发送应答SA：主机在接收完一个字节后，在下一个时钟发送1bit，0应答，1非应答。 接收应答RA：主机在发送完一个字节后，在下一个时钟接收1bit从判断从机是否应答，0应答，1非应答。 I2C时序★★★  指定地址写：对于指定设备（slave address），在指定地址（reg address）下，写入指定数据（data）  起始  –&gt; 主机send slave address（7bit）+...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Aylmer</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.1.</span> <span class="toc-text">1. 创建图片资源文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-typroa%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">2. typroa偏好设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8F%92%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.3.</span> <span class="toc-text">3. 插件下载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA"><span class="toc-number">3.</span> <span class="toc-text">效果演示</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/26/20250321-iic/" title="I2C 原理及时序代码">I2C 原理及时序代码</a><time datetime="2025-03-26T08:31:38.000Z" title="发表于 2025-03-26 16:31:38">2025-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/26/post-insert-image-method/" title="hexo 个人博客中插入图片的方法">hexo 个人博客中插入图片的方法</a><time datetime="2025-03-26T02:37:50.000Z" title="发表于 2025-03-26 10:37:50">2025-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/18/241118-aptRelatedWork/" title="241118-aptRelatedWork">241118-aptRelatedWork</a><time datetime="2024-11-17T16:00:00.000Z" title="发表于 2024-11-18 00:00:00">2024-11-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/15/20241115-firstblog/" title="20241115 aylmer first blog">20241115 aylmer first blog</a><time datetime="2024-11-15T08:31:38.000Z" title="发表于 2024-11-15 16:31:38">2024-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/15/hello-world/" title="Hello World">Hello World</a><time datetime="2024-11-15T08:02:20.217Z" title="发表于 2024-11-15 16:02:20">2024-11-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Aylmer</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

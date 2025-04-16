@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机组成原理 | Aylmer's Blog</title><meta name="author" content="Aylmer"><meta name="copyright" content="Aylmer"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机系统基础摩尔定律单位面积集成电路上的警惕u管数量每18个月都会翻番。 超算TOP500TOP500是对全球已安装超级计算机运算速度的权威排行榜。  从1993年起，由TOP500国际组织以实测计算速度为基准，每半年发布一次。 Top500用Linpack基准程序对高性能计算机进行测试，取前500最优质系统在Top500网站上公布。 Linpack:求解100个线性方程的计算机程序用于对高性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理">
+<meta property="og:url" content="https://aylmer-wang.github.io/2025/04/14/learn-jizu/index.html">
+<meta property="og:site_name" content="Aylmer&#39;s Blog">
+<meta property="og:description" content="计算机系统基础摩尔定律单位面积集成电路上的警惕u管数量每18个月都会翻番。 超算TOP500TOP500是对全球已安装超级计算机运算速度的权威排行榜。  从1993年起，由TOP500国际组织以实测计算速度为基准，每半年发布一次。 Top500用Linpack基准程序对高性能计算机进行测试，取前500最优质系统在Top500网站上公布。 Linpack:求解100个线性方程的计算机程序用于对高性能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aylmer-wang.github.io/img/my-avatar.jpg">
+<meta property="article:published_time" content="2025-04-14T07:18:32.000Z">
+<meta property="article:modified_time" content="2025-04-16T02:03:12.132Z">
+<meta property="article:author" content="Aylmer">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="国网备考">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aylmer-wang.github.io/img/my-avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "计算机组成原理",
+  "url": "https://aylmer-wang.github.io/2025/04/14/learn-jizu/",
+  "image": "https://aylmer-wang.github.io/img/my-avatar.jpg",
+  "datePublished": "2025-04-14T07:18:32.000Z",
+  "dateModified": "2025-04-16T02:03:12.132Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Aylmer",
+      "url": "https://aylmer-wang.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://aylmer-wang.github.io/2025/04/14/learn-jizu/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机组成原理',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Aylmer's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">计算机组成原理</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">计算机组成原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-14T07:18:32.000Z" title="发表于 2025-04-14 15:18:32">2025-04-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-16T02:03:12.132Z" title="更新于 2025-04-16 10:03:12">2025-04-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="计算机系统基础"><a href="#计算机系统基础" class="headerlink" title="计算机系统基础"></a>计算机系统基础</h1><h2 id="摩尔定律"><a href="#摩尔定律" class="headerlink" title="摩尔定律"></a>摩尔定律</h2><p>单位面积集成电路上的警惕u管数量每18个月都会翻番。</p>
+<h2 id="超算TOP500"><a href="#超算TOP500" class="headerlink" title="超算TOP500"></a>超算TOP500</h2><p>TOP500是对全球已安装超级计算机运算速度的权威排行榜。</p>
+<ul>
+<li>从1993年起，由TOP500国际组织以实测计算速度为基准，每半年发布一次。</li>
+<li>Top500用Linpack基准程序对高性能计算机进行测试，取前500最优质系统在Top500网站上公布。</li>
+<li>Linpack:求解100个线性方程的计算机程序用于对高性能计算机进行基准测试.</li>
+</ul>
+<h2 id="计算机分层结构"><a href="#计算机分层结构" class="headerlink" title="计算机分层结构"></a>计算机分层结构</h2><p><img src="/2025/04/14/learn-jizu/image-20250414153936030.png" alt="image-20250414153936030"></p>
+<h2 id="计算机属性包括："><a href="#计算机属性包括：" class="headerlink" title="计算机属性包括："></a>计算机属性包括：</h2><ul>
+<li>数据的表示形式</li>
+<li>寻址方式</li>
+<li>内部寄存器组</li>
+<li>指令集</li>
+<li>中断系统</li>
+<li>处理器工作状态及切换</li>
+<li>存储系统</li>
+<li>输入输出结构</li>
+<li>信息保护及特权</li>
+<li>高性能设计</li>
+</ul>
+<h2 id="计算机组成的设计主要包括："><a href="#计算机组成的设计主要包括：" class="headerlink" title="计算机组成的设计主要包括："></a>计算机组成的设计主要包括：</h2><ul>
+<li>数据通路的宽度</li>
+<li>专用部件的设置</li>
+<li>各功能部件的并行程度</li>
+<li>各种操作的相容性与互斥性</li>
+<li>控制机构的组成方式</li>
+<li>缓冲与排队技术的应用</li>
+<li>预估和预判方法</li>
+<li>高可靠性的技术</li>
+</ul>
+<h2 id="计算机实现就是计算机组成的物理实现。"><a href="#计算机实现就是计算机组成的物理实现。" class="headerlink" title="计算机实现就是计算机组成的物理实现。"></a>计算机实现就是计算机组成的物理实现。</h2><p>包括处理机、主存等部件的物理结构，器件的集成度和速度，模块，插件、底板的划分与连接，信号传输，电源、冷却及整机装配技术等它着眼于<strong>器件技术和微组装技术</strong>，其中器件技术在实现技术中占主导作用。利用具体的集成电路芯片、电子元器件、部件插头、插座等等，根据计算机组成的逻辑设计:实现物理计算机。</p>
+<h2 id="体系结构、组成、实现的关系"><a href="#体系结构、组成、实现的关系" class="headerlink" title="体系结构、组成、实现的关系"></a>体系结构、组成、实现的关系</h2><p><strong>具有相同计算机体系结构的计算机因为速度要求不同，可以采用不同的计算机组成。</strong></p>
+<p>例如，取指令、译码、取操作数、运算、存结果可以在时间上顺序方式进行，也可以让它们在时间上按重叠方式进行以提高执行速度。</p>
+<p><strong>一种计算机组成可以采用不同的额计算机实现。</strong></p>
+<p>例如，主存器件可以采用SRAM芯片，也可以采用DRAM芯片可以采用大规模集成电路单个芯片，也可以采用中小规模集成电路进行构建。显然，这取决于性能价格比的要求与器件技术的现状。</p>
+<h2 id="计算机的基本组成"><a href="#计算机的基本组成" class="headerlink" title="计算机的基本组成"></a>计算机的基本组成</h2><p><img src="/2025/04/14/learn-jizu/image-20250415162438410.png" alt="image-20250415162438410"></p>
+<p><img src="/2025/04/14/learn-jizu/image-20250415162517737.png" alt="image-20250415162517737"></p>
+<h2 id="软件硬件的逻辑等价性"><a href="#软件硬件的逻辑等价性" class="headerlink" title="软件硬件的逻辑等价性"></a>软件硬件的逻辑等价性</h2><p>任何操作、指令可以由硬件完成，也可以由软件来完成，取决于器件价格、速度、可靠性、存储容量、变更周期等因素。</p>
+<p><strong>软件硬化。</strong>如整数乘除法指令、浮点运算指令处理字符串指令等等，改为直接由硬件完成。</p>
+<p><strong>软件固化。</strong>现在已经可以把许多复杂的、常用的程序制作成所谓固件。甚至通过硬件直接解释执行高级语言的语句而不需要先经过编译程序的处理，即“固化”转“硬化”。</p>
+<h2 id="冯诺依曼计算机"><a href="#冯诺依曼计算机" class="headerlink" title="冯诺依曼计算机"></a>冯诺依曼计算机</h2><p><img src="/2025/04/14/learn-jizu/image-20250415162957353.png" alt="image-20250415162957353"></p>
+<h3 id="工作原理（程序存储控制原理）"><a href="#工作原理（程序存储控制原理）" class="headerlink" title="工作原理（程序存储控制原理）"></a>工作原理（程序存储控制原理）</h3><ul>
+<li>将计算机要完成的任务用指令描述，并编程程序。</li>
+<li>将程序存在存储器中。</li>
+<li>在控制器的控制下，从存储器中逐条取指令并执行。</li>
+<li>程序执行的结果即实现了计算机要完成的任务。</li>
+</ul>
+<h3 id="冯诺伊曼原理"><a href="#冯诺伊曼原理" class="headerlink" title="冯诺伊曼原理"></a>冯诺伊曼原理</h3><ol>
+<li>指令像数据一样存放在存储器，并像数据一样处理</li>
+<li>使用二进制</li>
+<li>使用程序存储控制方式工作</li>
+</ol>
+<p><img src="/2025/04/14/learn-jizu/image-20250415164855643.png" alt="image-20250415164855643"></p>
+<h2 id="计算机分类"><a href="#计算机分类" class="headerlink" title="计算机分类"></a>计算机分类</h2><p>Flynn分类法</p>
+<p>Fynn分类法是按照计算机在执行程序的过程中信息流的特征进行分类的。</p>
+<ul>
+<li>指令流(IS)-机器执行的指令序列，它由存储器流入控制单元(CU)</li>
+<li>数据流(DS)–由指令流所使用的数据包括输入数据、中间数据和结果。数据在处理单元(PU)中进行处理。</li>
+<li>控制流:(CS)—指令流进入CU，由CU产生一系列的控制流。(信号)，在控制流的控制下完成指令的功能。</li>
+</ul>
+<p><img src="/2025/04/14/learn-jizu/image-20250415165206631.png" alt="image-20250415165206631"></p>
+<p>a. 单指令单数据</p>
+<p>b. 单指令多数据</p>
+<p>c. 多指令单数据</p>
+<p>d. 多指令多数据</p>
+<h2 id="计算机性能描述"><a href="#计算机性能描述" class="headerlink" title="计算机性能描述"></a>计算机性能描述</h2><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ol>
+<li><p>CPU字长：指CPU一次能处理数据的位数.</p>
+<p>字长↑→CPU能处理的数据的精度高</p>
+</li>
+<li><p>主频：即时钟脉冲的频率.<br>主频↑→CPU工作节拍↑，机器运算速度↑</p>
+</li>
+<li><p>主存容量：由CPU地址总线的根数n决定，<code>2^n</code></p>
+</li>
+<li><p>带宽均衡性：计算机的最重要的性能指标–运算速度也常用带宽衡量,即<strong>数据流的最大速度</strong>和<strong>指令的最大吞吐量</strong>.按”木桶”理论,整体的性能取决于最差环节的性能</p>
+</li>
+<li><p>软硬件配置与性价比:</p>
+<ul>
+<li>软硬件配置:含外设的配置,指令系统及OS功能强弱,I&#x2F;F友好性及有无其它支持软件和应用软件等</li>
+<li>性能价格比P&#x2F;C越高越好</li>
+</ul>
+</li>
+<li><p>RASIS特性：五大功能</p>
+<p>可靠性、可用性、可维护性、完整性、安全性</p>
+</li>
+<li><p>兼容性</p>
+</li>
+<li><p>友好性与环保性</p>
+</li>
+</ol>
+<h3 id="基准测试程序"><a href="#基准测试程序" class="headerlink" title="基准测试程序"></a>基准测试程序</h3><ul>
+<li>TPC-C：对系统在线处理事务的能力进行评价，以每分钟处理新订单个数(tpmC为单位)。</li>
+<li>TPC-H：对系统在线数据库资料的查询能力进行评价。以每小时完成查询的数量。</li>
+<li>SPECweb2005：用于评价系统同时响应http连接的最大数量。<br>SPEC jApp Server2004：用于评价系统基于ava平台每秒钟所完成的iava操作的最大数量。</li>
+<li>SPECCPU2000：用于对特定程序包执行时的评估。</li>
+<li>Linpack：在每秒钟内，利用高斯消元法求解一元N次线性方程组的次数来评价系统的性能。</li>
+<li>HPCC：利用双精度矩阵乘法、傅立叶变换并行矩阵转置等七个子项全面评价系统的性能。</li>
+<li>SAPSD：测试系统的响应时间及每小时完成的定单数，用以衡量系统同时执行应用程序及数据库的能力。</li>
+</ul>
+<h3 id="速度指标"><a href="#速度指标" class="headerlink" title="速度指标"></a>速度指标</h3><ul>
+<li>每秒钟执行指令的百万条数MIPS</li>
+<li>每秒钟执行浮点数的百万次操作的数量</li>
+<li>MFLOPS吞吐量</li>
+<li>响应时间</li>
+<li>CPU时间，一个程序任务完成cpu所用的时间。</li>
+<li>处理器数量</li>
+</ul>
+<h3 id="系统性能计算"><a href="#系统性能计算" class="headerlink" title="系统性能计算"></a>系统性能计算</h3><p>执行时间（响应时间），定义为一个任务从开始到完成所用的时间或计算机完成一个任务所用的总时间。</p>
+<p>吞吐量，定义为在给定时间内（并行）完成的总任务数。</p>
+<p><img src="/2025/04/14/learn-jizu/image-20250415170911487.png" alt="image-20250415170911487"></p>
+<h3 id="Amdahl定律"><a href="#Amdahl定律" class="headerlink" title="Amdahl定律"></a>Amdahl定律</h3><p>内容：计算机系统中某部件由于采用某种更快的执行方式使系统性能改进后，整个系统性能的提高与该执行方式的使用频率或占总执行时间的比例有关。</p>
+<p>Amd定义了加速比，即</p>
+<p><img src="/2025/04/14/learn-jizu/image-20250415171327529.png" alt="image-20250415171327529"></p>
+<p>加速比就是计算机改进后比改进前快了多少倍。</p>
+<p>应用：改善“系统瓶颈”问题，用于系统改进之后性能提升的测试。</p>
+<p>加速比取决于两个因素：</p>
+<ul>
+<li>可改进部分在原系统执行时间中所占的比例，称为可改进比例，表示为$f_e(&lt;&#x3D;1)$</li>
+<li>可改进部分改进后性能提升的程度，称为部件加速比，表示为$r_e (&gt;&#x3D;1)$</li>
+</ul>
+<p>假设改进的系统执行时间为$T_0$，改进后的为$T_n$，则</p>
+<p>$T_n &#x3D; T_0(1-f_e + f_e &#x2F; r_e)$。</p>
+<p>若加速比用$S_p$表示，则有$S_p &#x3D; \frac{1}{1-f_e+f_e&#x2F;r_e}$</p>
+<p>若有多个部件改进，则可表示为$\frac{1}{1-\sum f_e+\sum (f_e &#x2F; r_e)}$。</p>
+<h1 id="数据的机器级表示和运算"><a href="#数据的机器级表示和运算" class="headerlink" title="数据的机器级表示和运算"></a>数据的机器级表示和运算</h1><h2 id="数据表示与数据编码的有关概念"><a href="#数据表示与数据编码的有关概念" class="headerlink" title="数据表示与数据编码的有关概念"></a>数据表示与数据编码的有关概念</h2><ul>
+<li>计算机可表示的数据：<ul>
+<li>bit b</li>
+<li>Byte B</li>
+<li>word，字长 根据cpu的位数决定</li>
+</ul>
+</li>
+<li>计算机需要表示和处理的数据：<ul>
+<li>指令</li>
+<li>正数、负数，整数，小数，实数</li>
+<li>文字、字符，声音、图像、视频</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据编码"><a href="#数据编码" class="headerlink" title="数据编码"></a>数据编码</h2><p>$35 &#x3D; (100011)_2,0.8125&#x3D;(0.1101)_2$</p>
+<ul>
+<li>数据表示：指的是能由机器硬件直接识别和引用的数据类型。由硬件实现的数据类型</li>
+<li>数据结构：面向计算机系统软件、面向应用领域所需处理的数据类型。由软件实现的数据类型。<ul>
+<li>目标:最大限度满足应用要求、最简化的方法实现。</li>
+<li>实现:通过数据表示和软件映象相结合方法实现。数据表示是数据类型的子集。</li>
+</ul>
+</li>
+</ul>
+<p>数据表示的确定实质上是软、硬件的取舍问题。数据结构和数据表示是软、硬件的界面</p>
+<h3 id="数值数据的编码"><a href="#数值数据的编码" class="headerlink" title="数值数据的编码"></a>数值数据的编码</h3><h3 id="数据的定点与浮点表示"><a href="#数据的定点与浮点表示" class="headerlink" title="数据的定点与浮点表示"></a>数据的定点与浮点表示</h3><h3 id="十进制数据：BCD码"><a href="#十进制数据：BCD码" class="headerlink" title="十进制数据：BCD码"></a>十进制数据：BCD码</h3><h2 id="非数值数据的编码"><a href="#非数值数据的编码" class="headerlink" title="非数值数据的编码"></a>非数值数据的编码</h2><h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><h3 id="汉字编码"><a href="#汉字编码" class="headerlink" title="汉字编码"></a>汉字编码</h3><h2 id="检错与纠错码"><a href="#检错与纠错码" class="headerlink" title="检错与纠错码"></a>检错与纠错码</h2><h3 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h3><h3 id="海明码"><a href="#海明码" class="headerlink" title="海明码"></a>海明码</h3><h3 id="循环冗余校验码"><a href="#循环冗余校验码" class="headerlink" title="循环冗余校验码"></a>循环冗余校验码</h3><h1 id="多级层次的存储系统"><a href="#多级层次的存储系统" class="headerlink" title="多级层次的存储系统"></a>多级层次的存储系统</h1><h1 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h1><h1 id="中央处理器"><a href="#中央处理器" class="headerlink" title="中央处理器"></a>中央处理器</h1><h1 id="总线与输入输出系统"><a href="#总线与输入输出系统" class="headerlink" title="总线与输入输出系统"></a>总线与输入输出系统</h1><h1 id="并行分布式处理系统"><a href="#并行分布式处理系统" class="headerlink" title="并行分布式处理系统"></a>并行分布式处理系统</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://aylmer-wang.github.io">Aylmer</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://aylmer-wang.github.io/2025/04/14/learn-jizu/">https://aylmer-wang.github.io/2025/04/14/learn-jizu/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://aylmer-wang.github.io" target="_blank">Aylmer's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/%E5%9B%BD%E7%BD%91%E5%A4%87%E8%80%83/">国网备考</a></div><div class="post-share"><div class="social-share" data-image="/img/my-avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/04/14/learn-spi/" title="SPI通信协议"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">SPI通信协议</div></div><div class="info-2"><div class="info-item-1">SPISPI 是英语Serial Peripheral interface的缩写，顾名思义就是串行外围设备接口。是Motorola(摩托罗拉)首先在其MC68HCXX系列处理器上定义的 SPI，是一种高速的，全双工，同步的通信总线，并且在芯片的管脚上只占用四根线，节约了芯片的管脚，同时为PCB的布局上节省空间，提供方便，主要应用在 EEPROM，FLASH，实时时钟，AD转换器，还有数字信号处理器和数字信号解码器之间。 SPI主从模式SPI分为主、从两种模式，一个SPI通讯系统需要包含一个（且只能是一个）主设备，一个或多个从设备。提供时钟的为主设备（Master），接收时钟的设备为从设备（Slave），SPI接口的读写操作，都是由主设备发起。当存在多个从设备时，通过各自的片选信号进行管理。 SPI是全双工且SPI没有定义速度限制，一般的实现通常能达到甚至超过10 Mbps SPI信号线SPI接口一般使用四条信号线通信：MISO（数据输入），MOSI（数据输出），SCK（时钟），CS（片选）  MISO：...</div></div></div></a><a class="pagination-related" href="/2025/04/16/add-comment/" title="基于hexo＆butterfly如何给个人博客的文章添加评论区"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">基于hexo＆butterfly如何给个人博客的文章添加评论区</div></div><div class="info-2"><div class="info-item-1">前言Giscus： 评论托管在 GitHub 上，用户评论必须使用 GitHub 账户登陆，操作比较简单。 更多的评论系统可以查看 Butterfly 设置文档 Giscus的中文介绍 1、仓库设置 博客所在仓库必须是公开的 (public)，否则访客将无法查看 discussion 你的 GitHub 已安装 giscus app ，否则访客将无法评论和回应 在你的仓库中启用 Discussions 功能  创建仓库 创建好一个博客仓库“your-repo”，其具体步骤可详见hexo文档或者[GitHub Pages + Hexo搭建个人博客网站，史上最全教程](GitHub Pages + Hexo搭建个人博客网站，史上最全教程_github pages hexo-CSDN博客) 开启Discussions在仓库的页面，点击顶部的 Settings  找到General - Features，并将Discussions打勾✔，下面的setup不需要关心  为你的github安装Giscus App 访问 https://github.com/apps/giscus 点击...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/04/08/jiwang-learning/" title="计算机网络笔记（准备国网）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-08</div><div class="info-item-2">计算机网络笔记（准备国网）</div></div><div class="info-2"><div class="info-item-1">计算机网络计算机网络和互联网 什么是internet? 网络 计算机网络 互联网 节点 主机及其上运行的应用程序 路由器、交换机等网络交换设备   边：通信链路 接入网链路：主机连接到互联网的链路 主干链路：路由器间的链路   协议：对等层的实体在通讯过程中遵循的规则的集合   网络结构 网络边缘：主机、应用程序  采用网络设施的面向连接服务 目标：端系统之间传输数据 握手：在数据传输之前做好准备 两个通信主机之间为连接建立状态   TCP服务： 可靠的按顺序的传送数据 流量控制 拥塞控制       网络核心：互联的路由器、网络的网络 接入网、物理媒体：有线或无线通信链路  应用层概述原理web and...</div></div></div></a><a class="pagination-related" href="/2025/04/09/learn-misrac/" title="misra-c笔记（准备嵌入式实习）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-09</div><div class="info-item-2">misra-c笔记（准备嵌入式实习）</div></div><div class="info-2"><div class="info-item-1">Misra-C编码规范前言为了解决嵌入式 C 语言开发中常见的安全性和可靠性问题，汽车产业软件可靠性协会 (MISRA) 发布了 MISRA C 编码标准。 MISRA C (Motor Industry Software Reliability Association C) 是汽车工业 C 编码标准的缩写，由 MISRA 协会发布。其目标是为嵌入式系统中的 C 语言开发提供一套严格的编码规范，旨在：  提升代码可靠性 (Reliability): 减少因编码错误导致的程序缺陷，提高系统运行的稳定性。 提升代码可读性 (Readability): 统一代码风格，使代码更易于理解和维护，降低维护成本。 提升代码可移植性 (Portability): 减少对特定编译器或硬件平台的依赖，增强代码在不同环境下的适应性。 提升代码可维护性 (Maintainability): 规范的代码结构和风格，降低代码维护和升级的难度。 提升代码安全性 (Safety): 避免潜在的安全漏洞，保障系统运行的安全。  一、指令 (Directives)Dir1.1 实现定义行为文档化 12Any...</div></div></div></a><a class="pagination-related" href="/2025/04/09/learn-yuchuli/" title="C语言之预处理命令"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-09</div><div class="info-item-2">C语言之预处理命令</div></div><div class="info-2"><div class="info-item-1">C语言之预处理命令#include（文件包含命令）#include的用法有两种，尖括号&lt;&gt;和双引号””  尖括号#include &lt;stdio.h&gt;  编译器会到系统路径下查找头文件   双引号#include “stdio.h”  编译器会先在当前目录下查找头文件，如果没有找到，再到系统路径下查找  使用尖括号和双引号的区别在于头文件的搜索路径   注意事项： 1、一个 #include 命令只能包含一个头文件 2、同一个头文件可以被多次引入，多次引入的效果和一次引入的效果相同，因为头文件在代码层面有防止重复引入的机制 3、头文件包含允许嵌套 （头文件只能包含变量和函数的声明，不能包含定义，否则在多次引入时会引起重复定义错误） #define（宏定义命令）格式：#define 标识符...</div></div></div></a><a class="pagination-related" href="/2025/04/07/yitaiwang/" title="以太网"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-07</div><div class="info-item-2">以太网</div></div><div class="info-2"><div class="info-item-1">以太网基础知识网络常见硬件介绍 双绞线 光纤 交换机 路由器  以太网的tcp&#x2F;ip协议栈中的位置 最简单的以太网通信 ping命令功能？  ping命令是如何工作的？  我的电脑仅仅知道对方的电脑IP地址，数据是怎么到达对方电脑上的?网络上电脑凭什么来找到对方? IP地址&amp;MAC地址 以太网通信寻址是靠MAC地址 ARP协议(地址解析协议) 原理：实现从 IP 地址到 MAC 地址的映射即询问目标IP对应的MAC地址     ping命令是直接发送数据到对方计算机吗？  ping不通网络一定不通吗？  不一定，可能arp欺骗    </div></div></div></a><a class="pagination-related no-desc" href="/2025/04/07/usart-learning/" title="STM32串口"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-07</div><div class="info-item-2">STM32串口</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/my-avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Aylmer</div><div class="author-info-description">勿以往之不谏，之来者之可追。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">计算机系统基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">摩尔定律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E7%AE%97TOP500"><span class="toc-number">1.2.</span> <span class="toc-text">超算TOP500</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">计算机分层结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%B1%9E%E6%80%A7%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">计算机属性包括：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%BB%E8%A6%81%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="toc-number">1.5.</span> <span class="toc-text">计算机组成的设计主要包括：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%9E%E7%8E%B0%E5%B0%B1%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E7%9A%84%E7%89%A9%E7%90%86%E5%AE%9E%E7%8E%B0%E3%80%82"><span class="toc-number">1.6.</span> <span class="toc-text">计算机实现就是计算机组成的物理实现。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E3%80%81%E7%BB%84%E6%88%90%E3%80%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.7.</span> <span class="toc-text">体系结构、组成、实现的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.8.</span> <span class="toc-text">计算机的基本组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%A1%AC%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E7%AD%89%E4%BB%B7%E6%80%A7"><span class="toc-number">1.9.</span> <span class="toc-text">软件硬件的逻辑等价性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="toc-number">1.10.</span> <span class="toc-text">冯诺依曼计算机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88%E7%A8%8B%E5%BA%8F%E5%AD%98%E5%82%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%EF%BC%89"><span class="toc-number">1.10.1.</span> <span class="toc-text">工作原理（程序存储控制原理）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%AF%E8%AF%BA%E4%BC%8A%E6%9B%BC%E5%8E%9F%E7%90%86"><span class="toc-number">1.10.2.</span> <span class="toc-text">冯诺伊曼原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%86%E7%B1%BB"><span class="toc-number">1.11.</span> <span class="toc-text">计算机分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%80%A7%E8%83%BD%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.12.</span> <span class="toc-text">计算机性能描述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">1.12.0.1.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.12.1.</span> <span class="toc-text">基准测试程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9F%E5%BA%A6%E6%8C%87%E6%A0%87"><span class="toc-number">1.12.2.</span> <span class="toc-text">速度指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="toc-number">1.12.3.</span> <span class="toc-text">系统性能计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amdahl%E5%AE%9A%E5%BE%8B"><span class="toc-number">1.12.4.</span> <span class="toc-text">Amdahl定律</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="toc-number">2.</span> <span class="toc-text">数据的机器级表示和运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E7%9A%84%E6%9C%89%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">数据表示与数据编码的有关概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">数据编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A0%81"><span class="toc-number">2.2.1.</span> <span class="toc-text">数值数据的编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9A%E7%82%B9%E4%B8%8E%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.2.2.</span> <span class="toc-text">数据的定点与浮点表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE%EF%BC%9ABCD%E7%A0%81"><span class="toc-number">2.2.3.</span> <span class="toc-text">十进制数据：BCD码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">非数值数据的编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASCII%E7%A0%81"><span class="toc-number">2.3.1.</span> <span class="toc-text">ASCII码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%89%E5%AD%97%E7%BC%96%E7%A0%81"><span class="toc-number">2.3.2.</span> <span class="toc-text">汉字编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E9%94%99%E4%B8%8E%E7%BA%A0%E9%94%99%E7%A0%81"><span class="toc-number">2.4.</span> <span class="toc-text">检错与纠错码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="toc-number">2.4.1.</span> <span class="toc-text">奇偶校验码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%B7%E6%98%8E%E7%A0%81"><span class="toc-number">2.4.2.</span> <span class="toc-text">海明码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%86%97%E4%BD%99%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="toc-number">2.4.3.</span> <span class="toc-text">循环冗余校验码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E5%B1%82%E6%AC%A1%E7%9A%84%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">多级层次的存储系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">指令系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">中央处理器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E4%B8%8E%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">6.</span> <span class="toc-text">总线与输入输出系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E8%A1%8C%E5%88%86%E5%B8%83%E5%BC%8F%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">7.</span> <span class="toc-text">并行分布式处理系统</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/16/add-comment/" title="基于hexo＆butterfly如何给个人博客的文章添加评论区">基于hexo＆butterfly如何给个人博客的文章添加评论区</a><time datetime="2025-04-16T07:43:10.000Z" title="发表于 2025-04-16 15:43:10">2025-04-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/14/learn-jizu/" title="计算机组成原理">计算机组成原理</a><time datetime="2025-04-14T07:18:32.000Z" title="发表于 2025-04-14 15:18:32">2025-04-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/14/learn-spi/" title="SPI通信协议">SPI通信协议</a><time datetime="2025-04-14T01:39:41.000Z" title="发表于 2025-04-14 09:39:41">2025-04-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/11/learn-gpio/" title="GPIO8种工作模式">GPIO8种工作模式</a><time datetime="2025-04-11T01:59:07.000Z" title="发表于 2025-04-11 09:59:07">2025-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/10/paper-log/" title="论文投稿记录">论文投稿记录</a><time datetime="2025-04-10T08:50:48.000Z" title="发表于 2025-04-10 16:50:48">2025-04-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Aylmer</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'aylmer-wang/aylmer-wang.github.io',
+      'data-repo-id': 'R_kgDONG36Qg',
+      'data-category-id': 'DIC_kwDONG36Qs4CpJUw',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
